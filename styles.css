@@ -601,6 +601,7 @@ h3 { font-size: clamp(1.15rem, 1.6vw, 1.35rem); font-weight: 600; }
   background: var(--hueso);
   border-radius: var(--radio-card);
   border: 1px solid var(--hueso-osc);
+  align-items: center;
 }
 .filter-chip {
   background: transparent;
@@ -618,6 +619,112 @@ h3 { font-size: clamp(1.15rem, 1.6vw, 1.35rem); font-weight: 600; }
   color: var(--papel);
   border-color: var(--rojo);
 }
+.filter-search,
+.filter-select {
+  background: var(--papel);
+  border: 1px solid var(--hueso-osc);
+  border-radius: var(--radio);
+  padding: 0.55rem 0.85rem;
+  font-size: 0.88rem;
+  color: var(--carbon);
+  font-family: inherit;
+  transition: all var(--transicion);
+  outline: none;
+  min-width: 0;
+}
+.filter-search { min-width: 200px; flex: 1 1 220px; }
+.filter-select { padding-right: 2rem; appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--gris-archivo) 50%), linear-gradient(135deg, var(--gris-archivo) 50%, transparent 50%); background-position: calc(100% - 14px) center, calc(100% - 9px) center; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; cursor: pointer; }
+.filter-search:focus,
+.filter-select:focus {
+  border-color: var(--rojo);
+  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.10);
+}
+.filter-search::placeholder { color: var(--gris-archivo); }
+.filter-clear {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--gris-archivo);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radio);
+  margin-left: auto;
+  transition: all var(--transicion);
+}
+.filter-clear:hover {
+  color: var(--rojo);
+  background: rgba(200, 16, 46, 0.06);
+}
+
+/* ============== PAGINACIÓN ============== */
+.pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--hueso-osc);
+  flex-wrap: wrap;
+}
+.pager-btn {
+  background: var(--papel);
+  border: 1px solid var(--hueso-osc);
+  color: var(--carbon);
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radio);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all var(--transicion);
+}
+.pager-btn:hover:not(:disabled) {
+  border-color: var(--rojo);
+  color: var(--rojo);
+}
+.pager-btn:disabled { opacity: 0.4; cursor: default; }
+.pager-info { font-size: 0.88rem; color: var(--gris-archivo); }
+
+/* ============== LISTA DE JUGADORES (en partido detail) ============== */
+.player-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.4rem 1.2rem;
+}
+.player-list li {
+  font-size: 0.92rem;
+  padding: 0.3rem 0;
+  color: var(--carbon);
+}
+
+/* ============== DEFINITION LIST (datos partido) ============== */
+.defs { margin: 0; }
+.defs dt {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gris-archivo);
+  font-weight: 600;
+  margin-top: 0.7rem;
+}
+.defs dt:first-child { margin-top: 0; }
+.defs dd {
+  margin: 0.15rem 0 0;
+  font-size: 0.92rem;
+  color: var(--carbon);
+}
+
+/* ============== GOL CARD especial ============== */
+.gol-thumb {
+  background: linear-gradient(135deg, #5a0c19, #2c0911) !important;
+}
+.gol-thumb .badge {
+  background: var(--rojo);
+  color: var(--papel);
+}
+.gol-thumb .initials { color: var(--dorado-claro); }
 
 /* ============== FICHA / DETAIL ============== */
 .detail {
@@ -985,4 +1092,393 @@ h3 { font-size: clamp(1.15rem, 1.6vw, 1.35rem); font-weight: 600; }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   SALA VIRTUAL — Capítulos scrolleables
+   ============================================ */
+
+.sala-page {
+  /* full bleed: que no esté constrained al container del main */
+  margin-bottom: -4rem; /* compensa el margin-top del footer para que no haya gap raro */
+}
+
+/* COVER */
+.sala-cover {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(ellipse at top, #2C2520 0%, #1A1410 60%, #0E0906 100%);
+  color: var(--hueso);
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 6rem) 1rem;
+}
+.sala-cover-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.07;
+  pointer-events: none;
+  filter: brightness(1.4) saturate(0.6);
+}
+.sala-cover-bg img {
+  width: min(900px, 90%);
+  height: auto;
+  animation: pulseScale 14s ease-in-out infinite;
+}
+@keyframes pulseScale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.sala-cover-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+}
+.sala-cover-inner h1 {
+  color: var(--hueso);
+  font-size: clamp(3rem, 7.5vw, 6rem);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: 1.4rem;
+}
+.sala-cover-inner h1 em {
+  color: var(--rojo-claro);
+  font-style: italic;
+}
+.sala-cover-inner .lead {
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  color: rgba(244, 237, 227, 0.78);
+  max-width: 580px;
+  margin: 0 auto;
+}
+.sala-cover-cta {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  color: rgba(244, 237, 227, 0.5);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.sala-arrow {
+  font-size: 1.4rem;
+  color: var(--dorado-claro);
+  animation: bounceY 1.8s ease-in-out infinite;
+}
+@keyframes bounceY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+.sala-back {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.4rem;
+  z-index: 3;
+  font-size: 0.85rem;
+  color: rgba(244, 237, 227, 0.6);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.sala-back:hover { color: var(--hueso); }
+
+/* CHAPTER */
+.sala-chapter {
+  padding: clamp(5rem, 12vw, 9rem) 0;
+  position: relative;
+}
+.sala-chapter--papel { background: var(--papel); color: var(--carbon); }
+.sala-chapter--hueso { background: var(--hueso); color: var(--carbon); }
+.sala-chapter--dark {
+  background: linear-gradient(180deg, #1A1410 0%, #0E0906 100%);
+  color: var(--hueso);
+}
+.sala-chapter--dark h2 { color: var(--hueso); }
+.sala-chapter--dark .chapter-num { color: var(--dorado); }
+.sala-chapter--dark .lead { color: rgba(244, 237, 227, 0.7); }
+
+.sala-chapter-head {
+  max-width: 840px;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.chapter-num {
+  display: inline-block;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: 700;
+  color: var(--rojo);
+  line-height: 1;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.02em;
+}
+.sala-chapter-head h2 {
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 1.2rem;
+}
+.sala-chapter-head .lead {
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  max-width: 640px;
+  color: var(--gris-archivo);
+}
+
+/* RANK LIST */
+.rank-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid currentColor;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+.sala-chapter--dark .rank-list {
+  border-color: rgba(244, 237, 227, 0.14);
+}
+.rank-row {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: center;
+  padding: clamp(0.9rem, 2vw, 1.4rem) clamp(0.4rem, 1vw, 1rem);
+  color: inherit;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all var(--transicion);
+  text-decoration: none;
+  position: relative;
+}
+.sala-chapter--dark .rank-row {
+  border-bottom-color: rgba(244, 237, 227, 0.14);
+}
+.rank-row:hover {
+  padding-left: clamp(0.8rem, 2vw, 1.6rem);
+  background: rgba(200, 16, 46, 0.04);
+  color: var(--rojo);
+}
+.sala-chapter--dark .rank-row:hover {
+  background: rgba(200, 16, 46, 0.10);
+  color: var(--rojo-claro);
+}
+.rank-num {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
+  color: var(--rojo);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.sala-chapter--dark .rank-num { color: var(--dorado-claro); }
+.rank-info { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.rank-kicker {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--gris-archivo);
+}
+.sala-chapter--dark .rank-kicker { color: rgba(244, 237, 227, 0.5); }
+.rank-name {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rank-sub { font-size: 0.85rem; color: var(--gris-archivo); }
+.sala-chapter--dark .rank-sub { color: rgba(244, 237, 227, 0.55); }
+.rank-count {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 700;
+  color: inherit;
+  white-space: nowrap;
+}
+.rank-count small {
+  font-family: "Inter", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--gris-archivo);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.sala-chapter--dark .rank-count small { color: rgba(244, 237, 227, 0.45); }
+@media (max-width: 600px) {
+  .rank-row { grid-template-columns: 48px 1fr auto; }
+  .rank-name { font-size: 1rem; }
+  .rank-count { font-size: 1.3rem; }
+  .rank-count small { display: none; }
+}
+
+/* ICONIC GRID — partidos eternos */
+.iconic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1rem, 2vw, 1.6rem);
+}
+.iconic-card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radio-card);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--hueso);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  transition: transform var(--transicion), box-shadow var(--transicion);
+  background: linear-gradient(180deg, #2C2520, #1A1410);
+}
+.iconic-card.iconic-victoria,
+.iconic-card.iconic-victoria-pen {
+  background: linear-gradient(135deg, #5a0c19 0%, #1A1410 100%);
+}
+.iconic-card.iconic-derrota,
+.iconic-card.iconic-derrota-pen {
+  background: linear-gradient(135deg, #2A1F1A 0%, #0E0906 100%);
+}
+.iconic-card.iconic-empate {
+  background: linear-gradient(135deg, #3A3128 0%, #1A1410 100%);
+}
+.iconic-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  color: var(--hueso);
+}
+.iconic-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 14px),
+    radial-gradient(circle at 30% 20%, rgba(212, 168, 97, 0.10), transparent 50%);
+  pointer-events: none;
+}
+.iconic-content { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 0.4rem; }
+.iconic-year {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--dorado-claro);
+  letter-spacing: -0.02em;
+}
+.iconic-result {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: 700;
+  margin-top: 0.4rem;
+}
+.iconic-rival {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: rgba(244, 237, 227, 0.85);
+}
+.iconic-meta {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(244, 237, 227, 0.5);
+  margin-top: 0.5rem;
+}
+
+/* ICONIC SHIRTS — capítulo de camisetas */
+.iconic-shirts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.shirt-card {
+  background: rgba(244, 237, 227, 0.04);
+  border: 1px solid rgba(244, 237, 227, 0.12);
+  border-radius: var(--radio-card);
+  text-decoration: none;
+  color: var(--hueso);
+  padding: 1rem 1rem 1.2rem;
+  transition: all var(--transicion);
+  display: flex;
+  flex-direction: column;
+}
+.shirt-card:hover {
+  background: rgba(244, 237, 227, 0.08);
+  border-color: var(--rojo);
+  transform: translateY(-4px);
+  color: var(--hueso);
+}
+.shirt-card-thumb {
+  background: linear-gradient(180deg, rgba(244,237,227,0.10), rgba(244,237,227,0.02));
+  border-radius: 6px;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+}
+.shirt-card-thumb svg { width: 80%; height: auto; max-height: 160px; }
+.shirt-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.shirt-card-id {
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--hueso);
+}
+.shirt-card-meta { font-size: 0.78rem; color: rgba(244, 237, 227, 0.55); }
+.shirt-card-count {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--dorado-claro);
+  margin-top: 0.4rem;
+}
+.shirt-card-count small {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(244, 237, 227, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* OUTRO */
+.sala-outro {
+  text-align: center;
+}
+.sala-outro h2 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  margin-bottom: 1.4rem;
+}
+.sala-outro .lead {
+  max-width: 620px;
+  margin: 0 auto 2.5rem;
+}
+.sala-outro-cta {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* REVEAL ON SCROLL */
+.sala-reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 900ms cubic-bezier(0.2, 0.7, 0.2, 1), transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+.sala-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sala-reveal { opacity: 1; transform: none; transition: none; }
+  .sala-arrow, .sala-cover-bg img { animation: none; }
 }
