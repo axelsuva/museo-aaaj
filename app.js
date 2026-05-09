@@ -77,7 +77,15 @@ const fechaPartido = (p) => {
   return String(p.anio);
 };
 const resultadoPartido = (p) => {
-  if (p.gh != null && p.gr != null) return `${p.gh} — ${p.gr}`;
+  // Fallback: si falta gh, lo deduzco de la cantidad de goles cargados para ese partido
+  let gh = p.gh;
+  if (gh == null) {
+    const gp = LOOKUP.golesByPartido.get(p.codigo);
+    if (gp && gp.length > 0) gh = gp.length;
+  }
+  if (gh != null && p.gr != null) return `${gh} — ${p.gr}`;
+  if (gh != null) return `${gh} — —`;
+  if (p.gr != null) return `— — ${p.gr}`;
   return "—";
 };
 
@@ -219,6 +227,8 @@ function jugadorCard(j) {
 }
 function partidoCard(p) {
   const cls = normalizeEstado(p.estadoFinal);
+  const titulo = p._heroTitle || p.rival || "—";
+  const subRival = p._heroTitle ? `vs ${p.rival || "—"}` : null;
   return `
     <a class="card" href="#/partidos/${escapeHTML(p.codigo)}">
       <div class="card-thumb aspect-wide">
@@ -228,8 +238,8 @@ function partidoCard(p) {
       </div>
       <div class="card-body">
         <span class="kicker">${escapeHTML(p.torneo || p.ambito || "Partido")}</span>
-        <span class="title">${escapeHTML(p.rival || "—")}</span>
-        <span class="meta">${escapeHTML(fechaPartido(p))} · ${escapeHTML(condicionLabel(p.condicion))}</span>
+        <span class="title">${escapeHTML(titulo)}</span>
+        <span class="meta">${subRival ? escapeHTML(subRival) + " · " : ""}${escapeHTML(fechaPartido(p))} · ${escapeHTML(condicionLabel(p.condicion))}</span>
       </div>
     </a>`;
 }
@@ -271,13 +281,19 @@ const Views = {
     const tg = DATA.goles.length;
     const tc = DATA.camisetas.length;
 
-    // Top 3 partidos icónicos: campeón Libertadores, Intercontinental, debut Maradona
-    const iconCodigos = [19761020, 19851028, 19851208];
-    const destacados = DATA.partidos
-      .filter((p) => iconCodigos.includes(p.codigo))
-      .concat(DATA.partidos.filter((p) => p.estadoFinal === "G" && p.torneo === "Libertadores").slice(0, 2))
-      .slice(0, 3);
-    const fallback = destacados.length >= 3 ? destacados : DATA.partidos.filter((p) => p.estadoFinal === "G").slice(0, 3);
+    // Partidos eternos del home (selección curada por Axel)
+    const iconCodigos = [
+      { codigo: 19851024, titulo: "Campeones de América" },
+      { codigo: 19851208, titulo: "Final Intercontinental vs Juventus" },
+      { codigo: 20100509, titulo: "El 4-3 a Independiente" },
+      { codigo: 20100516, titulo: "La 5ta estrella" },
+    ];
+    const fallback = iconCodigos
+      .map((ic) => {
+        const p = LOOKUP.partidoByCodigo.get(ic.codigo);
+        return p ? { ...p, _heroTitle: ic.titulo } : null;
+      })
+      .filter(Boolean);
 
     return `
       <section class="hero view-enter">

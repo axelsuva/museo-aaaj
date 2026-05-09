@@ -146,6 +146,41 @@ h3 { font-size: clamp(1.15rem, 1.6vw, 1.35rem); font-weight: 600; }
   border-radius: 2px;
 }
 
+/* Botones destacados de la nav: Sala Virtual (rojo) y Línea de tiempo (dorado) */
+.site-nav a[data-route="sala"] {
+  background: var(--rojo);
+  color: var(--papel);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(200, 16, 46, 0.18);
+}
+.site-nav a[data-route="sala"]:hover {
+  background: var(--rojo-osc);
+  color: var(--papel);
+  box-shadow: 0 4px 14px rgba(139, 10, 32, 0.28);
+}
+.site-nav a[data-route="sala"].active {
+  background: var(--rojo-osc);
+  color: var(--papel);
+}
+.site-nav a[data-route="sala"].active::after { display: none; }
+
+.site-nav a[data-route="hitos"] {
+  background: var(--dorado);
+  color: var(--papel);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(184, 137, 60, 0.20);
+}
+.site-nav a[data-route="hitos"]:hover {
+  background: #8d6824;
+  color: var(--papel);
+  box-shadow: 0 4px 14px rgba(141, 104, 36, 0.30);
+}
+.site-nav a[data-route="hitos"].active {
+  background: #8d6824;
+  color: var(--papel);
+}
+.site-nav a[data-route="hitos"].active::after { display: none; }
+
 .nav-toggle {
   display: none;
   background: transparent;
