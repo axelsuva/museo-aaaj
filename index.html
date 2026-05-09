@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Museo virtual interactivo de Argentinos Juniors — recorré la historia del Bicho." />
+  <title>Museo Virtual — Argentinos Juniors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="#/" class="brand" aria-label="Inicio del museo">
+      <span class="brand-shield" aria-hidden="true">
+        <svg viewBox="0 0 48 56" width="36" height="42" role="img" aria-label="Escudo Argentinos Juniors">
+          <defs>
+            <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E11935" />
+              <stop offset="100%" stop-color="#A30E25" />
+            </linearGradient>
+          </defs>
+          <path d="M24 2 L46 10 L46 30 C46 44 36 52 24 54 C12 52 2 44 2 30 L2 10 Z" fill="url(#shieldGrad)" stroke="#3A0712" stroke-width="1.5"/>
+          <path d="M14 18 L34 18 M14 26 L34 26 M14 34 L34 34" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" opacity="0.92"/>
+          <text x="24" y="46" text-anchor="middle" font-family="Playfair Display, serif" font-size="9" font-weight="700" fill="#FFFFFF">AAAJ</text>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-title">Museo Virtual</span>
+        <span class="brand-sub">Argentinos Juniors · 1904</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a href="#/jugadores" data-route="jugadores">Jugadores</a>
+      <a href="#/partidos" data-route="partidos">Partidos</a>
+      <a href="#/camisetas" data-route="camisetas">Camisetas</a>
+      <a href="#/hitos" data-route="hitos">Línea de tiempo</a>
+      <a href="#/sala" data-route="sala">Sala virtual</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main id="app" class="app-main" tabindex="-1">
+    <!-- Las vistas se renderizan acá -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-title">Museo Virtual · AAAJ</p>
+        <p class="footer-sub">Prototipo · Recorré 120 años del Bicho</p>
+      </div>
+      <div class="footer-meta">
+        <p>Argentinos Juniors · La Paternal, Buenos Aires</p>
+        <p>Fundado el 15 de agosto de 1904</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
