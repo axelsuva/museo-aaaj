@@ -284,7 +284,7 @@ const Views = {
         <div class="container hero-inner">
           <div>
             <span class="hero-tag">Museo Virtual · 1904 — Hoy</span>
-            <h1>Recorré 120 años del <em>Bicho</em>.</h1>
+            <h1>Recorré más de 120 años de historia del <em>bicho</em>.</h1>
             <p class="lead">El archivo histórico de Argentinos Juniors hecho navegación. Jugadores, partidos, goles y camisetas, todo conectado: tocá lo que quieras y descubrí qué más hay detrás.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#/sala">
@@ -304,14 +304,6 @@ const Views = {
           </div>
         </div>
 
-        <div class="container">
-          <div class="hero-stats">
-            <div class="hero-stat"><span class="num">${tj}</span><span class="lbl">Jugadores</span></div>
-            <div class="hero-stat"><span class="num">${tp}</span><span class="lbl">Partidos</span></div>
-            <div class="hero-stat"><span class="num">${tg}</span><span class="lbl">Goles</span></div>
-            <div class="hero-stat"><span class="num">${tc}</span><span class="lbl">Camisetas</span></div>
-          </div>
-        </div>
       </section>
 
       <section class="section view-enter">
