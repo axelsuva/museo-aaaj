@@ -147,49 +147,7 @@ const Views = {
             <div class="hero-ring r2"></div>
             <div class="hero-ring r3"></div>
             <div class="hero-shield">
-              <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <symbol id="aaajStar" viewBox="-10 -10 20 20">
-                    <polygon points="0,-9 2.1,-2.9 9,-2.9 3.4,1.1 5.5,7.4 0,3.5 -5.5,7.4 -3.4,1.1 -9,-2.9 -2.1,-2.9" fill="#F0C419" stroke="#C9A015" stroke-width="0.4"/>
-                  </symbol>
-                  <path id="topArc" d="M 32 140 A 68 68 0 0 1 168 140" fill="none"/>
-                  <path id="bottomArc" d="M 36 152 A 64 64 0 0 0 164 152" fill="none"/>
-                </defs>
-
-                <!-- Estrellas (5) en arco arriba -->
-                <use href="#aaajStar" x="39" y="62"/>
-                <use href="#aaajStar" x="68" y="46"/>
-                <use href="#aaajStar" x="100" y="40"/>
-                <use href="#aaajStar" x="132" y="46"/>
-                <use href="#aaajStar" x="161" y="62"/>
-
-                <!-- Círculo azul exterior -->
-                <circle cx="100" cy="140" r="80" fill="#1654A8" stroke="#0E3A78" stroke-width="1.5"/>
-
-                <!-- Círculo blanco interior -->
-                <circle cx="100" cy="140" r="55" fill="#FFFFFF"/>
-
-                <!-- Texto curvo arriba -->
-                <text font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" letter-spacing="2">
-                  <textPath href="#topArc" startOffset="50%" text-anchor="middle">ASOCIACION ATLETICA</textPath>
-                </text>
-
-                <!-- Texto curvo abajo -->
-                <text font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" letter-spacing="2">
-                  <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">ARGENTINOS JUNIORS</textPath>
-                </text>
-
-                <!-- Bandera roja -->
-                <rect x="65" y="105" width="70" height="70" fill="#C8102E"/>
-
-                <!-- Banda blanca diagonal (top-right a bottom-left) -->
-                <polygon points="135,119 121,105 65,161 79,175" fill="#FFFFFF"/>
-
-                <!-- Mens sana in corpore sano -->
-                <text x="100" y="120" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="7" font-weight="700" fill="#1654A8" letter-spacing="0.5">MENS SANA</text>
-                <text x="100" y="143" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="7" font-weight="700" fill="#1654A8" letter-spacing="0.5">IN</text>
-                <text x="100" y="167" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="7" font-weight="700" fill="#1654A8" letter-spacing="0.5">CORPORE SANO</text>
-              </svg>
+              <img src="escudo.svg" alt="Escudo oficial de Argentinos Juniors" />
             </div>
           </div>
         </div>
